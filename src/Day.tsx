@@ -2,53 +2,20 @@ import React, {Component} from 'react'
 import moment from 'moment'
 
 import { BillRow } from './BillRow';
+import TodaysBills from './TodaysBills';
+import UpcomingBills from './UpcomingBills';
 
 export type DayProps = {
     currentDay: Date;
     bills: BillRow[]
 };
 
-export type TodaysBillsProps = {
-    todaysBills: BillRow[]
-}
-
-export type NextBillsProps = {
-    nextBills: BillRow[]
-}
-
 export type DayState = {
     todaysBills: BillRow[]
     nextBills: BillRow[]
 };
 
-const TodaysBills = (props: TodaysBillsProps) => {
-    return (
-        <>
-            <p>todays bills</p>
-        {props.todaysBills.map((bill, index) => {
-            return (
-                <p key={'bill'+index}>you need at least {bill?.amount} in your {bill?.source} account </p>
-            )
-        })}
-        </>
-    )
-}
-
-const NextBills = (props: NextBillsProps) => {
-    return (
-        <>
-            <p>autopay in the next month</p>
-        {props.nextBills.map((bill, index) => {
-            return (
-                <p key={'bill'+index}>{bill?.amount} in your {bill?.source} account </p>
-            )
-        })}
-        </>
-    )
-}
-
 const MONEY_REGEX = /^\$?[\d,]+(\.\d*)?$/
-
 
 class Day extends Component<DayProps,DayState> {
     constructor(props: DayProps){
@@ -123,7 +90,7 @@ class Day extends Component<DayProps,DayState> {
         } else if(this.state.todaysBills.length){
             billsToShow = <TodaysBills todaysBills={this.state.todaysBills}/>
         } else {
-            billsToShow = <NextBills nextBills={this.state.nextBills}/>
+            billsToShow = <UpcomingBills nextBills={this.state.nextBills}/>
         }
         return (
             <div>
