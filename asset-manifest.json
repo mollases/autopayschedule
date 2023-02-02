@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/autopayschedule/static/css/main.d9856511.css",
+    "main.js": "/autopayschedule/static/js/main.fe3e770d.js",
+    "static/js/787.7200a680.chunk.js": "/autopayschedule/static/js/787.7200a680.chunk.js",
+    "index.html": "/autopayschedule/index.html",
+    "main.d9856511.css.map": "/autopayschedule/static/css/main.d9856511.css.map",
+    "main.fe3e770d.js.map": "/autopayschedule/static/js/main.fe3e770d.js.map",
+    "787.7200a680.chunk.js.map": "/autopayschedule/static/js/787.7200a680.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d9856511.css",
+    "static/js/main.fe3e770d.js"
+  ]
+}
