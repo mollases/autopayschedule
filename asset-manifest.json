@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.d9856511.css",
-    "main.js": "/static/js/main.9ef2a97d.js",
-    "static/js/787.7200a680.chunk.js": "/static/js/787.7200a680.chunk.js",
-    "index.html": "/index.html",
-    "main.d9856511.css.map": "/static/css/main.d9856511.css.map",
-    "main.9ef2a97d.js.map": "/static/js/main.9ef2a97d.js.map",
-    "787.7200a680.chunk.js.map": "/static/js/787.7200a680.chunk.js.map"
+    "main.css": "/autopayschedule/static/css/main.d9856511.css",
+    "main.js": "/autopayschedule/static/js/main.c4dc6005.js",
+    "static/js/787.7200a680.chunk.js": "/autopayschedule/static/js/787.7200a680.chunk.js",
+    "index.html": "/autopayschedule/index.html",
+    "main.d9856511.css.map": "/autopayschedule/static/css/main.d9856511.css.map",
+    "main.c4dc6005.js.map": "/autopayschedule/static/js/main.c4dc6005.js.map",
+    "787.7200a680.chunk.js.map": "/autopayschedule/static/js/787.7200a680.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d9856511.css",
-    "static/js/main.9ef2a97d.js"
+    "static/js/main.c4dc6005.js"
   ]
 }
