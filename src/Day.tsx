@@ -39,7 +39,7 @@ class Day extends Component<DayProps,DayState> {
             let bill = {...listOfBills[i]}
             let index = groupedByAccount.findIndex(value => bill.source === value.source)
             if(index !== -1) {
-                let num = Number(bill.amount.replace(/[\$,]/g, ''));
+                let num = Number(bill.amount.replace(/[$,]/g, ''));
                 let origin = Number(groupedByAccount[index].amount.replace(/[$,]/g, ''));
                 groupedByAccount[index].amount = '$' +Intl.NumberFormat().format(num + origin)
             } else {
