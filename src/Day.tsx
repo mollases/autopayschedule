@@ -1,0 +1,138 @@
+import React, {Component} from 'react'
+import moment from 'moment'
+
+import { BillRow } from './BillRow';
+
+export type DayProps = {
+    currentDay: Date;
+    bills: BillRow[]
+};
+
+export type TodaysBillsProps = {
+    todaysBills: BillRow[]
+}
+
+export type NextBillsProps = {
+    nextBills: BillRow[]
+}
+
+export type DayState = {
+    todaysBills: BillRow[]
+    nextBills: BillRow[]
+};
+
+const TodaysBills = (props: TodaysBillsProps) => {
+    return (
+        <>
+            <p>todays bills</p>
+        {props.todaysBills.map((bill, index) => {
+            return (
+                <p key={'bill'+index}>you need at least {bill?.amount} in your {bill?.source} account </p>
+            )
+        })}
+        </>
+    )
+}
+
+const NextBills = (props: NextBillsProps) => {
+    return (
+        <>
+            <p>autopay in the next month</p>
+        {props.nextBills.map((bill, index) => {
+            return (
+                <p key={'bill'+index}>{bill?.amount} in your {bill?.source} account </p>
+            )
+        })}
+        </>
+    )
+}
+
+const MONEY_REGEX = /^\$?[\d,]+(\.\d*)?$/
+
+
+class Day extends Component<DayProps,DayState> {
+    constructor(props: DayProps){
+        super(props)
+        this.state = {
+            todaysBills: [],
+            nextBills:[]
+        }
+    }
+
+    convertToNumber(dollar: string) {
+         const isValid = MONEY_REGEX.test(dollar)
+         if(isValid){
+            return Number(dollar.replace(/[$,]/g, ''));
+         }
+    }
+
+    static groupByAccount(listOfBills: BillRow[]){
+        const groupedByAccount = []
+        for(let i = 0; i < listOfBills.length; i++){
+            let bill = {...listOfBills[i]}
+            let index = groupedByAccount.findIndex(value => bill.source === value.source)
+            if(index !== -1) {
+                let num = Number(bill.amount.replace(/[\$,]/g, ''));
+                let origin = Number(groupedByAccount[index].amount.replace(/[$,]/g, ''));
+                groupedByAccount[index].amount = '$' +Intl.NumberFormat().format(num + origin)
+            } else {
+                groupedByAccount.push(bill)
+            }
+        }
+        return groupedByAccount
+    }
+
+    static getDerivedStateFromProps(props: DayProps) {
+        const bills = props.bills
+        const day = props.currentDay
+        const todaysBills = bills.filter(value => {
+            const when = moment(value.when)
+            return when.isSame(day)
+        })
+       
+        
+        const thisMonth = bills.filter(value => {
+            const when = moment(value.when)
+            return when.isBetween(day, moment(day).add(1,'month'))
+        })
+        const todaysGrouped = Day.groupByAccount(todaysBills)
+        
+        thisMonth.sort((a,b) => {
+            const aa = a.source
+            const bb = b.source
+            if (aa < bb) {
+                return -1;
+            } else if ( aa > bb){
+                return 1;
+            } else {
+                return 0;
+            }
+        })
+        const nextBillsGrouped = Day.groupByAccount(thisMonth)
+
+        return {
+            nextBills: nextBillsGrouped,
+            todaysBills: todaysGrouped
+        }
+    }
+
+    render(){
+        let billsToShow
+        if(this.state.todaysBills === undefined){
+
+        } else if(this.state.todaysBills.length){
+            billsToShow = <TodaysBills todaysBills={this.state.todaysBills}/>
+        } else {
+            billsToShow = <NextBills nextBills={this.state.nextBills}/>
+        }
+        return (
+            <div>
+                <h1>{moment(this.props.currentDay).format('MMMM Do YYYY')}</h1>
+                {billsToShow}
+             </div>
+        )
+    }
+}
+
+
+export default Day

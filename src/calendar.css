@@ -1,0 +1,23 @@
+
+.Sample__container__content {
+  display: flex;
+  max-width: 100%;
+  flex-basis: 420px;
+  flex-direction: column;
+  flex-grow: 100;
+  align-items: stretch;
+  padding-top: 1em;
+}
+
+.Sample__container__content .react-calendar {
+  margin: 0 auto;
+}
+
+
+.react-calendar__month-view__days__day--weekend {
+  color: black
+}
+
+.highlight {
+  color:red;
+}
