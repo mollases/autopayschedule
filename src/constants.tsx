@@ -1,0 +1,6 @@
+const INTERNAL_DATE = 'MM-DD-YYYY'
+const VIEW_DATE = 'DD-MM-YYYY'
+
+export {
+  INTERNAL_DATE,VIEW_DATE
+}

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { BillRow } from './BillRow';
+import { BillRow } from './../BillRow';
 
 export type UpcomingBillsProps = {
     nextBills: BillRow[]

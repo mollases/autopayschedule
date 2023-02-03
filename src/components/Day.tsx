@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import moment from 'moment'
 
-import { BillRow } from './BillRow';
+import { BillRow } from './../BillRow';
 import TodaysBills from './TodaysBills';
 import UpcomingBills from './UpcomingBills';
 
@@ -50,6 +50,7 @@ class Day extends Component<DayProps,DayState> {
     }
 
     static getDerivedStateFromProps(props: DayProps) {
+        console.log('derived state')
         const bills = props.bills
         const day = props.currentDay
         const todaysBills = bills.filter(value => {
