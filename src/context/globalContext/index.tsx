@@ -1,4 +1,4 @@
-import GlobalContext, { initialState, GlobalStateType } from './GlobalContext'
+import GlobalContext from './GlobalContext'
 import GlobalProvider from './GlobalProvider'
 import useGlobalContext from './useGlobalContext'
 

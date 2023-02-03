@@ -1,6 +1,6 @@
 import moment from 'moment';
 import Papa from 'papaparse';
-import React, { useState } from 'react'
+import React from 'react'
 import { BillRow } from '../BillRow';
 import { INTERNAL_DATE, VIEW_DATE } from '../constants';
 import { useGlobalContext } from '../context/globalContext';
@@ -8,8 +8,7 @@ import { useGlobalContext } from '../context/globalContext';
 const Importer = () => {
 
   const {
-    state: { bills },
-    dispatch,
+    dispatch
   } = useGlobalContext()
 
   const fileUploaded = function (e: { target: { files: any; }; }) {
