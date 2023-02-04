@@ -47,7 +47,7 @@ const globalContextReducer = (state: GlobalStateType, action: GlobalActionType):
   }
 }
 
-export const GlobalProvider = (props: { children: ReactNode }): JSX.Element => {
+export const GlobalProvider = (props: { children?: ReactNode }): JSX.Element => {
   const [state, dispatch] = useReducer(globalContextReducer, initialState)
 
   return (
